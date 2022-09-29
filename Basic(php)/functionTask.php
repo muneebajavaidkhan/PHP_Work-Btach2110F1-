@@ -19,8 +19,8 @@
     <?php
         if(isset($_POST["ChckNum"]))
         {
-          $number1 = (float)htmlspecialchars($_POST['num1']);
-          $number2 = (float)htmlspecialchars($_POST['num2']);
+          $number1 = ($_POST['num1']);
+          $number2 = ($_POST['num2']);
         
         function Commision($WkSal,$ComRate){
 
