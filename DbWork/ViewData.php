@@ -16,7 +16,7 @@ $rowCount = mysqli_num_rows($res);
 
 if ($rowCount > 0) { ?>
 
-    <table class = "container table table-bordered">
+    <table class = "container table table-bordered mt-5">
 
         <tr>
             <th>StudentId</th>
@@ -26,6 +26,7 @@ if ($rowCount > 0) { ?>
             <th>Gender</th>
             <th>Courses</th>
             <th>City</th>
+            <th></th>
         </tr>
 
         <?php while ($data = mysqli_fetch_assoc($res)) {
@@ -38,6 +39,7 @@ if ($rowCount > 0) { ?>
                         <td><?= $data['Gender'] ?></td>
                         <td><?= $data['Courses'] ?></td>
                         <td><?= $data['City'] ?></td>
+                        <td> <a href="Edit.php?id=<?= $data['StdId'] ?>" class = "btn btn-primary">Edit</a> </td>
 
 
 
