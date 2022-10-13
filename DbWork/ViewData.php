@@ -39,7 +39,13 @@ if ($rowCount > 0) { ?>
                         <td><?= $data['Gender'] ?></td>
                         <td><?= $data['Courses'] ?></td>
                         <td><?= $data['City'] ?></td>
-                        <td> <a href="Edit.php?id=<?= $data['StdId'] ?>" class = "btn btn-primary">Edit</a> </td>
+                        <td> <a href="Edit.php?id=<?= $data[
+                            'StdId'
+                        ] ?>" class = "btn btn-primary">Edit</a> </td>
+                        <td> <a href="ViewData.php?Delid=<?= $data[
+                            'StdId'
+                        ] ?>" class = "btn btn-danger" onclick = 
+                        "return confirm('Are you sure you want to delete');return false;">Delete</a> </td>
 
 
 
@@ -53,6 +59,18 @@ if ($rowCount > 0) { ?>
 
 
 <?php } else {echo '<p>No Records Found</p>';}
+
+error_reporting(0);
+
+$DelID = $_GET['Delid'];
+
+$query = "delete from student where StdId = $DelID";
+
+$res = mysqli_query($con, $query);
+
+if ($res) {
+    echo "<script>alert('Data Deleted!!');window.location.href = 'ViewData.php';</script>";
+}
 ?>
 
 
