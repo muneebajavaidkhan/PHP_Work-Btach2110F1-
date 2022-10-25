@@ -47,5 +47,23 @@
 </div>
 
 
-
-
+<?php if (isset($_POST['btn'])) {
+    $Email = $_POST['email'];
+    $Password = $_POST['Pass'];
+    $EmailSearch = "select * from register where Email = '$Email'";
+    $query = mysqli_query($con, $EmailSearch); //abc@gmail.com
+    $EmailCount = mysqli_num_rows($query);
+    //1
+    if ($EmailCount) {
+        $res = mysqli_fetch_assoc($query);
+        $db_Pass = $res['Password'];
+        $pass_decode = password_verify($Password, $db_Pass);
+        if ($pass_decode) {
+            echo "<script>alert('Login Successfull'); window.location.href = 'Main.php'</script>";
+        } else {
+            echo "<script>alert('Login Failed')</script>";
+        }
+    } else {
+        echo "<script>alert('Invalid Email')</script>";
+    }
+} ?>
