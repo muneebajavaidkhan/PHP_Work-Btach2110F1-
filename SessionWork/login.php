@@ -1,7 +1,6 @@
 <?php include 'header.php'; ?>
 <?php include 'connection.php'; ?>
-
-
+<?php session_start(); ?>
 
 <div class = 'container mt-5'>
 
@@ -52,11 +51,11 @@
     $Password = $_POST['Pass'];
     $EmailSearch = "select * from register where Email = '$Email'";
     $query = mysqli_query($con, $EmailSearch); //abc@gmail.com
-    $EmailCount = mysqli_num_rows($query);
-    //1
+    $EmailCount = mysqli_num_rows($query); //1
     if ($EmailCount) {
         $res = mysqli_fetch_assoc($query);
         $db_Pass = $res['Password'];
+        $_SESSION['db_name'] = $res['Name'];
         $pass_decode = password_verify($Password, $db_Pass);
         if ($pass_decode) {
             echo "<script>alert('Login Successfull'); window.location.href = 'Main.php'</script>";

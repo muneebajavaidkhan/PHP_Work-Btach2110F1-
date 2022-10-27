@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Main Page</h1>
-</body>
-</html>
+<?php include 'header.php'; ?>
+<?php session_start(); ?>
+
+
+<?php if (!isset($_SESSION['db_name'])) {
+    header('location:login.php');
+} ?>
+<h1>   <?= $_SESSION['db_name'] ?> </h1>
+
+
+<a href="logout.php" class = "btn btn-primary">Logout</a>
