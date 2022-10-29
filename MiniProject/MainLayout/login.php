@@ -56,14 +56,19 @@
     $Password = $_POST['Pass'];
     $EmailSearch = "select * from register where Email = '$Email'";
     $query = mysqli_query($con, $EmailSearch); //abc@gmail.com
-    $EmailCount = mysqli_num_rows($query); //1
+    $EmailCount = mysqli_num_rows($query);
+    //1
     if ($EmailCount) {
         $res = mysqli_fetch_assoc($query);
         $db_Pass = $res['Password'];
         $_SESSION['db_name'] = $res['Name'];
         $pass_decode = password_verify($Password, $db_Pass);
         if ($pass_decode) {
-            echo "<script>alert('Login Successfull'); window.location.href = 'index.php'</script>";
+            if ($_SESSION['db_name'] == 'Admin') {
+                echo "<script>window.location.href = '../AdminLayout/main.php'</script>";
+            } else {
+                echo "<script>alert('Login Successful');window.location.href = 'index.php'</script>"; // header('location:index.php');
+            }
         } else {
             echo "<script>alert('Login Failed')</script>";
         }
